@@ -1,0 +1,56 @@
+# DBHub Configuration for Business Central MSSQL
+# This is an example configuration file. Copy this to `dbhub.toml` and fill in your actual values.
+#
+# IMPORTANT: Never commit `dbhub.toml` to version control as it contains sensitive credentials.
+# Only commit this `.example` file.
+#
+# Based on official example: https://github.com/bytebase/dbhub/blob/main/dbhub.toml.example
+
+[[sources]]
+id = "bc_mssql"
+description = "Business Central MSSQL Database"
+type = "sqlserver"
+host = "[YOUR_DATABASE_HOST]"                    # e.g., 172.16.203.20 or db.example.com
+port = 1433                                        # Default SQL Server port
+database = "[YOUR_DATABASE_NAME]"                # e.g., GPL-STL-BC18 or MyBusinessDatabase
+user = "[YOUR_DATABASE_USERNAME]"                # e.g., sa or domain\username
+password = "[YOUR_DATABASE_PASSWORD]"            # Your secure database password
+sslmode = "require"                               # Enables encryption (recommended for production)
+
+# Connection timeouts (in seconds)
+connection_timeout = 15                           # Connection timeout duration
+query_timeout = 15                                # Query execution timeout duration
+
+# Tool Configurations (Guardrails for MCP tools)
+[[tools]]
+name = "execute_sql"
+source = "bc_mssql"
+readonly = true                                   # Enforce read-only (prevents UPDATE/DELETE/INSERT)
+max_rows = 1000                                   # Limit results to prevent large data dumps (adjust as needed)
+
+[[tools]]
+name = "search_objects"
+source = "bc_mssql"
+
+# ============================================================================
+# OPTIONAL: SSH Tunnel Configuration
+# ============================================================================
+# Uncomment the following section if your database is behind a bastion/jump host
+#
+# [[sources]]
+# id = "bc_mssql_ssh"
+# description = "Business Central MSSQL via SSH Tunnel"
+# type = "sqlserver"
+# host = "[INTERNAL_DATABASE_HOST]"              # Internal network IP/hostname
+# port = 1433
+# database = "[YOUR_DATABASE_NAME]"
+# user = "[YOUR_DATABASE_USERNAME]"
+# password = "[YOUR_DATABASE_PASSWORD]"
+# 
+# # SSH Tunnel Settings
+# ssh_host = "[SSH_BASTION_HOST]"               # e.g., bastion.example.com
+# ssh_port = 22                                  # SSH port (default: 22)
+# ssh_user = "[SSH_USERNAME]"                   # SSH login username
+# ssh_key = "~/.ssh/id_ed25519"                 # Path to your SSH private key
+# # ssh_passphrase = "[SSH_KEY_PASSPHRASE]"     # Only if your key is encrypted
+# connection_timeout = 30

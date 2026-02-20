@@ -1,0 +1,51 @@
+# Configuration Files (with sensitive data)
+dbhub.toml
+dbhub/.env
+.env
+
+# SSL/TLS Certificates
+dbhub/certs/*.pem
+dbhub/certs/*.key
+dbhub/certs/*.crt
+dbhub/certs/*.cer
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+coverage/
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# Environment-specific
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS-specific
+Thumbs.db
+.DS_Store
