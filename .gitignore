@@ -49,3 +49,6 @@ temp/
 # OS-specific
 Thumbs.db
 .DS_Store
+
+# Internal documentation
+RELEASE_SUMMARY.md
