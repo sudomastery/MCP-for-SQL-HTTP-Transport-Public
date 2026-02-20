@@ -2,6 +2,7 @@
 dbhub.toml
 dbhub/.env
 .env
+RELEASE_SUMMARY.md
 
 # SSL/TLS Certificates
 dbhub/certs/*.pem
